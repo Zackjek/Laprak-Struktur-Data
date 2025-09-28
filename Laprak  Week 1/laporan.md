@@ -75,6 +75,9 @@ int main(){
 
 Program ini membaca input `celcius`, lalu mengalikannya dengan `9.0/5.0` (digunakan `float` agar hasilnya presisi) dan menambahkannya dengan 32 untuk mendapatkan nilai `fahrenheit`.
 
+Outputnya bang:
+![alt text](<Screenshot 2025-09-28 185043.png>)
+
 ### 4.3 Guided 3
 
 Program ini adalah contoh sederhana penggunaan struktur `if-else` untuk memberikan diskon berdasarkan total pembelian. Jika total pembelian lebih dari atau sama dengan 30.000, maka program akan menghitung dan menampilkan diskon sebesar 10%. Jika tidak, program akan menampilkan pesan lain.
@@ -100,6 +103,9 @@ int main(){
 ```
 
 Struktur `if(total_pembelian >= 30000)` menjadi penentu alur program. Jika kondisi ini `true`, blok `if` dieksekusi. Jika `false`, blok `else` yang akan dieksekusi.
+
+Outputnya bang:
+![Output Guided](<Screenshot 2025-09-28 184800.png>)
 
 ## 5. Unguided
 
@@ -145,6 +151,9 @@ int main() {
 ```
 
 Implementasi program ini cukup sederhana, yaitu dengan menampung input ke dalam dua variabel `float`, lalu menghitung hasilnya menggunakan operator aritmatika dan menampilkannya ke layar.
+Ini outputnya bang :
+![output unguided 1](<Output Unguided 1.png>)
+
 
 ### 5.2 Unguided 2
 
@@ -191,7 +200,8 @@ int main() {
 }
 ```
 
-Cara implementasinya adalah dengan memecah angka menjadi puluhan dan satuan menggunakan operasi modulus (`%`) dan pembagian (`/`). Array `satuan` digunakan untuk memetakan angka 1-9 ke kata yang sesuai.
+Cara implementasinya adalah dengan memecah angka menjadi puluhan dan satuan menggunakan operasi modulus (`%`) dan pembagian (`/`). Array `satuan` digunakan untuk memtakan angka 1-9 ke kata yang sesuai, Contoh Outiputnya bang :
+![Output Unguided 2](<Screenshot 2025-09-28 184512.png>)
 
 ### 5.3 Unguided 3
 
@@ -233,11 +243,9 @@ int main() {
 }
 ```
 
-**Output untuk `n = 5`:**
+**Output untuk `n = 3`:**
 
 ```
-54321*12345
- 4321*1234
   321*123
    21*12
     1*1
@@ -247,10 +255,10 @@ Logikanya diatur oleh loop `for` utama yang berjalan dari `n` hingga 1. Di dalam
 
 ## 6. Kesimpulan
 
-Pada praktikum ini,aku telah berhasil mengimplementasikan beberapa konsep dasar pemrograman C++ seperti penggunaan variabel, tipe data, operator, input-output, serta struktur kontrol `if-else` dan perulangan `for`.program-program yang dibuat, mulai dari kalkulator sederhana, konversi angka ke kata, hingga pembuatan pola kompleks, menunjukkan bahwa tujuan praktikum untuk memahami dan menerapkan logika pemrograman dasar telah tercapai.aku jadi lebih paham bagaimana struktur ini bekerja untuk memecahkan masalah-masalah yang diberikan.
+Pada praktikum ini,gweh telah berhasil mengimplementasikan beberapa konsep dasar pemrograman C++ seperti penggunaan variabel, tipe data, operator, input-output, serta struktur kontrol `if-else` dan perulangan `for`.program-program yang dibuat, mulai dari kalkulator sederhana, konversi angka ke kata, hingga pembuatan pola kompleks, menunjukkan bahwa tujuan praktikum untuk memahami dan menerapkan logika pemrograman dasar telah tercapai.gw jadi lebih paham bagaimana struktur ini bekerja untuk memecahkan masalah-masalah yang diberikan.
 
 ## 7. Referensi
 
 https://terapan-ti.vokasi.unesa.ac.id/post/struktur-data-pengertian-fungsi-dan-penerapannya
-
-
+https://medium.com/@yasawijaya97/struktur-data-array-f9512a611fc3
+https://www.academia.edu/41589468/Algoritma_Dan_Pemrograman_Fungsi_Percabangan_if_else_dan_Array
