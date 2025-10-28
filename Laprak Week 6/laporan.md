@@ -563,6 +563,7 @@ Tugas ini mengimplementasikan fungsi yang lebih kompleks: `smartInsert` dengan a
 
 ```cpp
 #include <iostream>
+#include <string>
 using namespace std;
 #define Nil NULL
 
@@ -580,7 +581,7 @@ struct List {
     address last;
 };
 
-
+// --- FUNGSI DASAR ---
 address alokasi(infotype x) {
     address P = new elmlist;
     P->info = x;
@@ -661,33 +662,6 @@ void deleteAfter(List &L, address &P, address Prec) {
     P->next = Nil;
 }
 
-
-void smartInsert(List &L, infotype x) {
-    address P = alokasi(x);
-    // Kondisi 1: List kosong
-    if (L.first == Nil) {
-        insertFirst(L, P);
-        cout << "Smart Insert: List kosong, insert " << x << " di first" << endl;
-    // Kondisi 2: Nilai lebih kecil dari elemen pertama
-    } else if (x < L.first->info) {
-        insertFirst(L, P);
-        cout << "Smart Insert: " << x << " < first, insert di first" << endl;
-    // Kondisi 3: Nilai genap
-    } else if (x % 2 == 0) {
-        insertLast(L, P);
-        cout << "Smart Insert: " << x << " genap, insert di last" << endl;
-    // Kondisi 4: Nilai ganjil
-    } else {
-        address R = L.first;
-        // Cari posisi untuk menyisipkan
-        while (R->next != Nil && R->next->info < x && R->next->info % 2 != 0) {
-            R = R->next;
-        }
-        insertAfter(L, P, R);
-        cout << "Smart Insert: " << x << " di antara " << R->info << " dan " << (R->next ? to_string(R->next->info) : "last") << endl;
-    }
-}
-
 void deleteAll(List &L, bool silent = false) {
     int count = 0;
     address P;
@@ -707,7 +681,6 @@ address findElm(List L, infotype x) {
     return Nil;
 }
 
-// Overload deleteByValue agar bisa dipanggil di conditionalDelete
 void deleteByValue(List &L, infotype x, bool silent = false) {
     address target = findElm(L, x);
     if (target == Nil) {
@@ -722,22 +695,46 @@ void deleteByValue(List &L, infotype x, bool silent = false) {
     if (!silent) cout << "Nilai " << x << " berhasil dihapus" << endl;
 }
 
+// --- FUNGSI UNGUIDED (DIPERBAIKI) ---
 
+void smartInsert(List &L, infotype x) {
+    address P = alokasi(x);
+    if (L.first == Nil) {
+        insertFirst(L, P);
+        cout << "Smart Insert: List kosong, insert " << x << " di first" << endl;
+    } else if (x < L.first->info) {
+        insertFirst(L, P);
+        cout << "Smart Insert: " << x << " < first, insert di first" << endl;
+    } else if (x % 2 == 0) {
+        insertLast(L, P);
+        cout << "Smart Insert: " << x << " genap, insert di last" << endl;
+    } else {
+        address R = L.first;
+        while (R->next != Nil && R->next->info < x && R->next->info % 2 != 0) {
+            R = R->next;
+        }
+        
+        // FIX: Simpan info node selanjutnya SEBELUM insertAfter mengubah struktur list
+        string nextInfo = (R->next != Nil) ? to_string(R->next->info) : "last";
+        
+        insertAfter(L, P, R);
+        cout << "Smart Insert: " << x << " di antara " << R->info << " dan " << nextInfo << endl;
+    }
+}
 
 void conditionalDelete(List &L) {
     int count = 0;
     address P = L.first;
     while (P != Nil) {
-        address nextNode = P->next; // Simpan node selanjutnya sebelum P dihapus
-        if (P->info % 2 != 0) { // Cek apakah ganjil
-            deleteByValue(L, P->info, true); // Hapus secara 'silent'
+        address nextNode = P->next;
+        if (P->info % 2 != 0) {
+            deleteByValue(L, P->info, true);
             count++;
         }
-        P = nextNode; // Lanjutkan ke node selanjutnya
+        P = nextNode;
     }
     cout << "Conditional Delete: " << count << " elemen ganjil dihapus" << endl;
 }
-
 
 int main() {
     List L;
@@ -782,7 +779,7 @@ int main() {
 4.  Fungsi `main` mendemonstrasikan alur lengkap: membangun list dengan `smartInsert`, memfilternya dengan `conditionalDelete`, dan membersihkannya dengan fungsi hapus lainnya.
 
 **Output:**
-![alt text](<Screenshot 2025-10-25 195506.png>)
+![alt text](<Screenshot 2025-10-28 160152.png>)
 
 ## 
 
